@@ -61,7 +61,7 @@ function Form_template_Modal(btnName, data) {
   document.getElementById('form-submit').children[0].style.display = `${btnName == 'Modificar' ? '' : 'none'}`;
 }
 
-function template_Post_Put() {
+function Template_Post_Put() {
   $('#form-submit').submit(function (e) {
     e.preventDefault();
     $.ajax({
@@ -79,4 +79,4 @@ function template_Post_Put() {
 
 
 ListView();
-template_Post_Put();
+Template_Post_Put();
