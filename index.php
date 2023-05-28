@@ -55,7 +55,7 @@
 
           <form id="form-submit">
             <label for=""><b>#</b></label>
-            <input type="text" class="form-control" name="id" id="input-0">
+            <input type="text" class="form-control" readonly name="id" id="input-0">
             <label for=""><b>Nombre</b></label>
             <input type="text" class="form-control" name="nombre" id="input-1">
             <label for=""><b>Apellido</b></label>
