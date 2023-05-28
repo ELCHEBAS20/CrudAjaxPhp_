@@ -35,15 +35,25 @@ function ListView() {
 }
 
 function DeleteUser(id) {
-  $.ajax({
-    type: "POST",
-    url: "./main.php?StrlAccion=Eliminar",
-    data: { idUser: id },
-    dataType: "text",
-    success: function (response) {
-      ListView();
-    }
-  });
+  swal({
+    title: "¿Deseas eliminar el usuario respectivo?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+    .then((willDelete) => {
+      if (willDelete) {
+        $.ajax({
+          type: "POST",
+          url: "./main.php?StrlAccion=Eliminar",
+          data: { idUser: id },
+          dataType: "text",
+          success: function (response) {
+            ListView();
+          }
+        });
+      }
+    });
 }
 
 function OpenModal(id) {
@@ -76,7 +86,6 @@ function Template_Post_Put() {
     });
   });
 }
-
 
 ListView();
 Template_Post_Put();
