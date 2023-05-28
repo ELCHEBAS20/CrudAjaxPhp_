@@ -12,4 +12,6 @@ if ($getGet == 'Lista') {
   $objController->ModifUser();
 } else if ($getGet == 'Eliminar') {
   $objController->DeletUser();
+} else if ($getGet == 'Insertar') {
+  $objController->insertUser();
 }

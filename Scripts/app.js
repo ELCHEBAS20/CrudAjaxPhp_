@@ -1,9 +1,8 @@
-
-
 'use strict';
 
 var arrayData = [];
 const getInput = document.getElementById('form-submit').getElementsByTagName('input');
+$('#btn-submit').text('');
 
 function ListView() {
 
@@ -53,30 +52,26 @@ function OpenModal(id) {
   Form_template_Modal('Modificar', ObjValues);
 }
 
-async function Form_template_Modal(btnName, data) {
-  templatePost_Put('');
+function Form_template_Modal(btnName, data) {
   for (let index = 0; index < getInput.length; ++index) {
     $(`#input-${index}`).val(data[index]);
   }
   $('#btn-submit').text(btnName);
   document.getElementById('input-0').style.display = `${btnName == 'Modificar' ? '' : 'none'}`;
   document.getElementById('form-submit').children[0].style.display = `${btnName == 'Modificar' ? '' : 'none'}`;
-
-  await templatePost_Put(btnName);
 }
 
-async function templatePost_Put(btnStrl) {
-
-  await $('#form-submit').submit(function (e) {
+function template_Post_Put() {
+  $('#form-submit').submit(function (e) {
     e.preventDefault();
     $.ajax({
       type: "POST",
-      url: `./main.php?StrlAccion=${btnStrl}`,
+      url: `main.php?StrlAccion=${$('#btn-submit').text()}`,
       data: $('#form-submit').serialize(),
       dataType: "text",
       success: function (response) {
         ListView();
-        document.getElementById('close-btn').click();
+        document.querySelector('#close-btn').click();
       }
     });
   });
@@ -84,3 +79,4 @@ async function templatePost_Put(btnStrl) {
 
 
 ListView();
+template_Post_Put();

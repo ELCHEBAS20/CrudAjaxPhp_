@@ -20,7 +20,7 @@ class UsuarioController
     $Execute = mysqli_query($this->getConn, $Query);
     $count = 0;
 
-    while ($row = mysqli_fetch_array($Execute)) {
+    while ($row = mysqli_fetch_array($Execute)) :
 
       $array[$count++] = [
         'id' => $row['idUsuario'],
@@ -29,8 +29,18 @@ class UsuarioController
         'edad' => $row['Edad'],
         'direccion' => $row['Direccion']
       ];
-    }
+
+    endwhile;
+
     echo json_encode($array);
+  }
+
+
+  public function insertUser()
+  {
+    $Query = "INSERT INTO usuario(Nombre,Apellido,Edad,Direccion) VALUES('{$_POST['nombre']}','{$_POST['apellido']}','{$_POST['edad']}','{$_POST['direccion']}')";
+    $execute = mysqli_query($this->getConn, $Query);
+    echo $execute == 1 ? true : false;
   }
 
   public function ModifUser()
